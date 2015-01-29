@@ -1,0 +1,37 @@
+Package: nbpMatching
+Type: Package
+Title: Functions for Optimal Non-bipartite Matching
+Version: 1.4.4
+Date: 2015-01-19
+Author: Cole Beck [aut, cre], Bo Lu [aut], Robert Greevy [aut]
+Maintainer: Cole Beck <cole.beck@vanderbilt.edu>
+Authors@R: c(person("Cole", "Beck", role = c("aut", "cre"),
+    email = "cole.beck@vanderbilt.edu"),
+    person("Bo", "Lu", role = "aut"),
+    person("Robert", "Greevy", role = "aut"))
+Description: This package provides functions for performing nonbipartite
+    matching and matched randomization. A "bipartite" matching utilizes two
+    separate groups, e.g. smokers being matched to nonsmokers or cases being
+    matched to controls. A "nonbipartite" matching creates mates from one big
+    group, e.g. 100 hospitals being randomized for a two-arm cluster randomized
+    trial or 5000 children who have been exposed to various levels of
+    secondhand smoke and are being paired to form a greater exposure vs. lesser
+    exposure comparison. At the core of a nonbipartite matching is a NxN
+    distance matrix for N potential mates. The distance between two units
+    expresses a measure of similarity or quality as mates (the lower the
+    better). The 'gendistance()' and 'distancematrix()' functions assist in
+    creating this. The 'nonbimatch()' function creates the matching that
+    minimizes the total sum of distances between mates; hence, it is referred
+    to as an "optimal" matching. The 'assign.grp()' function aids in performing
+    a matched randomization. Note the package can also perform bipartite
+    matching using the prevent option in 'gendistance()'.
+License: GPL (>= 2)
+LazyLoad: yes
+Depends:
+    methods,
+    Hmisc
+Imports:
+    MASS
+Suggests:
+    testthat
+URL: http://biostat.mc.vanderbilt.edu/wiki/Main/MatchedRandomization
