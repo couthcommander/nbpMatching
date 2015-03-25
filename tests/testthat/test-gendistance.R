@@ -14,23 +14,27 @@ cov <- data.frame(
 maxval <- 2*10^8
 
 test_that("gendistance fails on empty data.frame", {
+  testthat::skip_on_cran()
   expect_error(gendistance(cov[FALSE,]))
   expect_error(gendistance(cov[11,]))
   expect_error(gendistance(cov[11:12,]))
 })
 
 test_that("gendistance creates NxN matrix", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,1:5])
   expect_equal(dim(x$dist), rep(nrow(cov), 2))
 })
 
 test_that("gendistance creates NxN matrix with phantoms", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,1:5], ndiscard=2)
   expect_equal(dim(x$dist), rep(nrow(cov)+2, 2))
   expect_equal(x$ndiscard, 2)
 })
 
 test_that("gendistance takes column index or name as input", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,1:5], idcol=1, prevent=2, rankcols=3:4)
   expect_equal(names(x$ignored), c('id','gender'))
   expect_equal(x$prevent, 'gender')
@@ -40,11 +44,13 @@ test_that("gendistance takes column index or name as input", {
 })
 
 test_that("gendistance respects idcol", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,1:5], idcol='id')
   expect_equal(rownames(x$cov), rownames(x$dist), colnames(x$dist), cov$id)
 })
 
 test_that("gendistance respects prevent", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,1:5], idcol=1, prevent=2)
   expect_equal(x$prevent, 'gender')
   expect_true(all(x$dist[1:4,1:4] == maxval))
@@ -52,6 +58,7 @@ test_that("gendistance respects prevent", {
 })
 
 test_that("gendistance respects mates", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,-6], idcol='id', force='Group2.Row')
   expect_equal(x$mates, cov[,'Group2.Row'])
   expect_true(all(x$dist[9:10,1:8] == maxval))
@@ -60,12 +67,14 @@ test_that("gendistance respects mates", {
 })
 
 test_that("gendistance respects talisman", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,1:6], idcol=1, prevent=2, ndiscard=2, talisman='nophantom')
   expect_true(all(x$dist[1:4,11:12] == maxval))
   expect_true(all(x$dist[5:10,11:12] == 0))
 })
 
 test_that("gendistance imputes missing values", {
+  testthat::skip_on_cran()
   cv <- cov[rep(1:10,3),2:5]
   cv[11:20,'age'] <- cv[11:20,'age'] - cv[11:20,'cars'] + cv[11:20,'accidents']
   cv[11:20,'cars'] <- cv[11:20,'cars'] - cv[11:20,'gender'] + cv[11:20,'accidents']
@@ -80,6 +89,7 @@ test_that("gendistance imputes missing values", {
 })
 
 test_that("distancematrix can use gendistance", {
+  testthat::skip_on_cran()
   x <- gendistance(cov, idcol='id', prevent='gender', force='Group2.Row', ndiscard=2, talisman='nophantom')
   dm <- distancematrix(x)
   expect_true(class(dm) == 'distancematrix')

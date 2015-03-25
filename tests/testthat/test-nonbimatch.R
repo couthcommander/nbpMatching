@@ -12,6 +12,7 @@ cov <- data.frame(
 )
 
 test_that("nonbimatch creates matches", {
+  testthat::skip_on_cran()
   x <- gendistance(cov[,-6], idcol='id', force='Group2.Row')
   dm <- distancematrix(x)
   mt <- nonbimatch(dm, precision=9)

@@ -2,6 +2,7 @@ library(nbpMatching)
 context("Distance Matrix")
 
 test_that("distancematrix generates errors when expected", {
+  testthat::skip_on_cran()
   x <- as.matrix(sample(16), nrow=4)
   expect_error(distancematrix(x))
   x <- as.matrix(dist(sample(1:25, 8, replace=TRUE)))
