@@ -54,6 +54,8 @@ setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision,
     if(!is.na(threshold) && threshold >= 0) {
         # extend the distance matrix for chameleons
         newvals <- rep(threshold, n)
+        # node stack overflow may occur if distancematrix
+        suppressWarnings(class(mdm) <- 'matrix')
         # add columns
         mdm <- do.call("cbind", c(list(mdm), newvals))
         # add rows
