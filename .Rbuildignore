@@ -1,2 +1,4 @@
 ^README\.md$
 ^NEWS\.md$
+^cran-comments\.md$
+^\.git$
