@@ -37,8 +37,8 @@
 
 setGeneric("nonbimatch", function(mdm, threshold=NA, precision=6, ...) standardGeneric("nonbimatch"))
 setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision, ...) {
-    if(any(is.na(as.integer(mdm)))) {
-        stop("Elements of a distance matrix must be integers")
+    if(any(is.na(as.numeric(mdm)))) {
+        stop("Elements of a distance matrix must be numeric")
     }
     n <- nrow(mdm)
     if(n == 0) {
@@ -62,19 +62,32 @@ setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision,
         mdm <- do.call("rbind", c(list(mdm), newvals))
         n <- n*2
     } else threshold <- NA
+    ## consider replacing Inf in mdm here
+    if(FALSE) {
+        suppressWarnings(class(mdm) <- 'matrix')
+        myinf <- is.infinite(mdm)
+        numdigits <- floor(log10(max(mdm[!myinf]))) + 1
+        mdm[myinf] <- 2*10^numdigits
+    }
 
     wt <- c(mdm)
     nmatch <- seq_len(n)
-    numdigits <- floor(log10(max(wt))) + 1
     if(!is.numeric(precision) || precision < 1) {
         precision <- 6
         warning("Precision value is too small.  Setting precision to six.")
+    } else if(precision > 10) {
+        precision <- 6
+        warning("Precision value is too large.  Setting precision to six.")
     }
-    shift <- 10^(precision-numdigits)
+    myinf <- is.infinite(wt)
+    numdigits <- floor(log10(max(wt[!myinf]))) + 1
+    shift <- 10^(precision-numdigits-1)
+    wt <- wt*shift
+    # replace Inf with new max
+    wt[myinf] <- 2*10^(precision-1)
     # the largest number will have at most [precision] digits (defaulting to six)
     # warning: if the vector is large and there are too many digits, the Fortran call will crash
     if(shift < 1) {
-        wt <- wt*shift
         print(sprintf("Note: Distances scaled by %s to ensure all data can be handled", shift))
     }
     match <- .Fortran(mwrap, n=as.integer(n), wt=as.integer(wt), nmatch=as.vector(nmatch), prcn=precision)$nmatch
@@ -84,6 +97,7 @@ setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision,
         c2c <- which(match[seq(from=(n/2)+1, to=n)] > n/2)
         # number of chameleons that match elements
         ncham <- n/2 - length(c2c)
+        ids <- append(ids, sprintf('chameleon%s', seq_len(ncham)))
         if(length(c2c) > 0L) {
             match <- match[-(c2c + n/2)]
             index.to.replace <- which(match > n/2)
@@ -93,7 +107,6 @@ setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision,
                 match[seq(from=(n/2+1), to=(n/2+ncham))] <- index.to.replace
             }
             n <- length(match)
-            ids <- append(ids, sprintf('chameleon%s', seq_len(ncham)))
         }
     }
 

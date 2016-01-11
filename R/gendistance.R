@@ -266,12 +266,7 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
     # take the square root
     mdists <- sqrt(mdists)
 
-    # pick a big value for points that shouldn't match - like the diagonal
-    numdigits<-floor(log10(max(mdists))) + 1
-    shift<-10^(8-numdigits)
-    maxval<-2*10^8
-    mdists<-floor(mdists*shift)
-    diag(mdists) <- maxval
+    maxval <- Inf
     # add back row names
     dimnames(mdists) <- list(myrownames, myrownames)
 
@@ -306,13 +301,14 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
     GROUPS <- 2
     nphantoms <- ndiscard + ((GROUPS - (nr - ndiscard) %% GROUPS) %% GROUPS)
     if(nphantoms > 0L) {
-        mdists <- make.phantoms(mdists, nphantoms)
+        mdists <- make.phantoms(mdists, nphantoms, maxval=maxval)
         # failed talisman receive max distance
         if(length(tal.fail)) {
             pcols <- seq(nr + 1, nr + nphantoms)
             mdists[tal.fail, pcols] <- mdists[pcols, tal.fail] <- maxval
         }
     }
+    diag(mdists) <- maxval
     # convert matrix to data frame
     mdists <- as.data.frame(mdists)
 

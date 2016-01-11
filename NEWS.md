@@ -1,3 +1,11 @@
+# nbpmatching 1.5.0
+
+* Updated NAMESPACE to include default packages other than base
+* Removed distance scaling in `gendistance`
+* `gendistance` and `make.phantoms` use max distance Inf
+* Removed integer constraint on `distancematrix`
+*** Update documentation to reference mahalanobis distance calculation
+
 # nbpmatching 1.4.5
 
 * Improved package description

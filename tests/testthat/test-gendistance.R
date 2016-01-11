@@ -11,7 +11,7 @@ cov <- data.frame(
   Group2.Row = c(NA,NA,NA,NA,NA,NA,NA,NA,10,9)
 )
 
-maxval <- 2*10^8
+maxval <- Inf
 
 test_that("gendistance fails on empty data.frame", {
   testthat::skip_on_cran()

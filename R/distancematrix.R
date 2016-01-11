@@ -64,9 +64,9 @@
 
 setClass("distancematrix", contains="matrix")
 setMethod("initialize", "distancematrix", function(.Object, ...) {
-    .Object<-callNextMethod()
-    nr<-nrow(.Object)
-    nc<-ncol(.Object)
+    .Object <- callNextMethod()
+    nr <- nrow(.Object)
+    nc <- ncol(.Object)
     if(nr == 0 || nc == 0) {
         stop("Row and column lengths must exceed zero")
     }
@@ -74,32 +74,31 @@ setMethod("initialize", "distancematrix", function(.Object, ...) {
         stop("Row and column lengths must be equal")
     if(nr != nc) {
         if(nr > nc) {
-            mynames<-.Object[1,]
-            .Object@.Data<-.Object@.Data[-1,]
-            nr<-nr-1
+            mynames <- .Object[1,]
+            .Object@.Data <- .Object@.Data[-1,]
+            nr <- nr-1
         } else {
-            mynames<-.Object[,1]
-            .Object@.Data<-.Object@.Data[,-1]
-            nc<-nc-1
+            mynames <- .Object[,1]
+            .Object@.Data <- .Object@.Data[,-1]
+            nc <- nc-1
         }
-        colnames(.Object)<-mynames
-        rownames(.Object)<-mynames
+        colnames(.Object) <- mynames
+        rownames(.Object) <- mynames
     }
-    if(any(is.na(as.integer(.Object)))) {
-        stop("Elements of a distance matrix must be integers")
+    if(any(is.na(as.numeric(.Object)))) {
+        stop("Elements of a distance matrix must be numeric")
     }
-    if(nr%%2 == 1) {
+    if(nr %% 2 == 1) {
         warning("There must be an even number of elements\nAdding a ghost value")
-        .Object@.Data<-rbind(.Object@.Data, rep(0, nc))
-        nr<-nr+1
-        .Object@.Data<-cbind(.Object@.Data, rep(0, nr))
-        nc<-nc+1
-        colnames(.Object)[nr]<-'ghost'
-        rownames(.Object)[nc]<-'ghost'
+        .Object@.Data <- rbind(.Object@.Data, rep(0, nc))
+        nr <- nr+1
+        .Object@.Data <- cbind(.Object@.Data, rep(0, nr))
+        nc <- nc+1
+        colnames(.Object)[nr] <- 'ghost'
+        rownames(.Object)[nc] <- 'ghost'
     }
-    .Object@.Data<-matrix(as.integer(.Object@.Data), nrow=nr)
     # set the diagonal to zero
-    diag(.Object@.Data)<-0
+    diag(.Object@.Data) <- 0
     if(any(.Object@.Data != t(.Object@.Data))) {
         stop("A distancematrix must be symmetric")
     }

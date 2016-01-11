@@ -7,7 +7,7 @@
 \alias{make.phantoms,matrix,numeric-method}
 \title{Add Phantom Rows and Columns}
 \usage{
-make.phantoms(x, nphantoms, name = "phantom", maxval = 2 * 10^8, ...)
+make.phantoms(x, nphantoms, name = "phantom", maxval = Inf, ...)
 }
 \arguments{
 \item{x}{A matrix or data.frame object, with \eqn{N}x\eqn{N} dimensions.}
@@ -19,7 +19,7 @@ elements.  Defaults to "phantom".}
 
 \item{maxval}{An integer value, the default value to give the pairs of
 phantoms (indeces [N+1:N+NP, N+1:N+NP]), assumed to be a maximum distance.
-Defaults to 2*10^8.}
+Defaults to Inf.}
 
 \item{\dots}{Additional arguments, not used at this time.}
 }

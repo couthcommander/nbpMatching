@@ -24,8 +24,10 @@
 #'2:148-54. doi: 10.1002/pds.3260.
 #'@keywords package cluster array
 #'@import methods
+#'@import stats
 #'@importFrom Hmisc transcan hdquantile
 #'@importFrom MASS ginv
+#'@importFrom utils read.csv
 #'@useDynLib nbpMatching mwrap
 #'@examples
 #'

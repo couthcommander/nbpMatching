@@ -17,7 +17,7 @@
 #'elements.  Defaults to "phantom".
 #'@param maxval An integer value, the default value to give the pairs of
 #'phantoms (indeces [N+1:N+NP, N+1:N+NP]), assumed to be a maximum distance.
-#'Defaults to 2*10^8.
+#'Defaults to Inf.
 #'@param \dots Additional arguments, not used at this time.
 #'@return a matrix or data.frame object
 #'@exportMethod make.phantoms
@@ -35,8 +35,8 @@
 #'make.phantoms(dist.mat, 3)
 #'
 
-setGeneric("make.phantoms", function(x, nphantoms, name="phantom", maxval=2*10^8, ...) standardGeneric("make.phantoms"))
-setMethod("make.phantoms", signature(x="matrix", nphantoms="numeric"), function(x, nphantoms, name="phantom", maxval=2*10^8, ...) {
+setGeneric("make.phantoms", function(x, nphantoms, name="phantom", maxval=Inf, ...) standardGeneric("make.phantoms"))
+setMethod("make.phantoms", signature(x="matrix", nphantoms="numeric"), function(x, nphantoms, name="phantom", maxval=Inf, ...) {
     if(nphantoms < 1) return(x)
     if(missing(name)) {
         name <- "phantom"
@@ -44,7 +44,7 @@ setMethod("make.phantoms", signature(x="matrix", nphantoms="numeric"), function(
         stop("name argument is not character")
     }
     if(missing(maxval)) {
-        maxval <- 2*10^8
+        maxval <- Inf
     } else if(!is.numeric(maxval)) {
         stop("maxval argument is not numeric")
     }

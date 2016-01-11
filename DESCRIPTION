@@ -1,8 +1,8 @@
 Package: nbpMatching
 Type: Package
 Title: Functions for Optimal Non-Bipartite Matching
-Version: 1.4.5
-Date: 2015-05-13
+Version: 1.5.0
+Date: 2015-07-29
 Author: Cole Beck [aut, cre], Bo Lu [aut], Robert Greevy [aut]
 Maintainer: Cole Beck <cole.beck@vanderbilt.edu>
 Authors@R: c(person("Cole", "Beck", role = c("aut", "cre"),
@@ -26,12 +26,12 @@ Description: Perform non-bipartite matching and matched randomization. A
     bipartite matching can be performed using the prevent option in
     'gendistance()'.
 License: GPL (>= 2)
-LazyLoad: yes
-Depends:
-    methods,
-    Hmisc
 Imports:
-    MASS
+    methods,
+    stats,
+    Hmisc,
+    MASS,
+    utils
 Suggests:
     testthat
 URL: http://biostat.mc.vanderbilt.edu/wiki/Main/MatchedRandomization
