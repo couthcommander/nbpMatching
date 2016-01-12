@@ -99,7 +99,7 @@ setMethod("initialize", "distancematrix", function(.Object, ...) {
     }
     # set the diagonal to zero
     diag(.Object@.Data) <- 0
-    if(any(.Object@.Data != t(.Object@.Data))) {
+    if(any(abs(.Object@.Data - t(.Object@.Data)) > (.Machine$double.eps ^ 0.5))) {
         stop("A distancematrix must be symmetric")
     }
     .Object
