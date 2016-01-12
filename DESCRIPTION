@@ -2,7 +2,7 @@ Package: nbpMatching
 Type: Package
 Title: Functions for Optimal Non-Bipartite Matching
 Version: 1.5.0
-Date: 2015-07-29
+Date: 2016-01-12
 Author: Cole Beck [aut, cre], Bo Lu [aut], Robert Greevy [aut]
 Maintainer: Cole Beck <cole.beck@vanderbilt.edu>
 Authors@R: c(person("Cole", "Beck", role = c("aut", "cre"),

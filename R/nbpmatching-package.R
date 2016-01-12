@@ -70,10 +70,11 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-    packageStartupMessage("Notice: Formerly the gendistance() function scaled
-the Mahalanobis distances into large integers, as required by the nonbimatch()
-function. Starting in version 1.5.0, gendistance() will return unscaled
-distances. This facilitates comparison to an appropriate F distribution for
-multivariate normal data. Any required scaling will happen invisibly within
-nonbimatch(). This notice will be removed in a future version of nbpMatching.")
+    packageStartupMessage("Notice:
+Formerly the gendistance() function scaled the Mahalanobis distances into large
+integers, as required by the nonbimatch() function. Starting in version 1.5.0,
+gendistance() will return unscaled distances. This facilitates comparison to an
+appropriate F distribution for multivariate normal data. Any required scaling
+will happen invisibly within nonbimatch(). This notice will be removed in a
+future version of nbpMatching.")
 }

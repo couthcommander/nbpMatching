@@ -4,7 +4,7 @@
 * Removed distance scaling in `gendistance`
 * `gendistance` and `make.phantoms` use max distance Inf
 * Removed integer constraint on `distancematrix`
-*** Update documentation to reference mahalanobis distance calculation
+*** Update documentation to reference Mahalanobis distance calculation
 
 # nbpmatching 1.4.5
 
