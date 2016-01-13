@@ -1,8 +1,8 @@
 #'Generate a Distance Matrix
 #'
-#'The gendistance function creates an \eqn{(n+k)}x\eqn{(n+k)} distance matrix
-#'from an \eqn{(n)}x\eqn{(p)} covariates matrix, where \eqn{(n)} is the number
-#'of subjects, \eqn{(p)} the number of covariates, and \eqn{(k)} the number of
+#'The gendistance function creates an \eqn{(N+K)}x\eqn{(N+K)} distance matrix
+#'from an \eqn{N}x\eqn{P} covariates matrix, where \eqn{N} is the number
+#'of subjects, \eqn{P} the number of covariates, and \eqn{K} the number of
 #'phantom subjects requested (see \code{ndiscard} option). Provided the
 #'covariates' covariance matrix is invertible, the distances computed are
 #'Mahalanobis distances, or if covariate weights are provided, Reweighted
