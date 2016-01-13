@@ -1,12 +1,19 @@
 #'Generate a Distance Matrix
 #'
-#'The gendistance function creates a distance matrix from a covariates matrix.
+#'The gendistance function creates an \eqn{(n+k)}x\eqn{(n+k)} distance matrix
+#'from an \eqn{(n)}x\eqn{(p)} covariates matrix, where \eqn{(n)} is the number
+#'of subjects, \eqn{(p)} the number of covariates, and \eqn{(k)} the number of
+#'phantom subjects requested (see \code{ndiscard} option). Provided the
+#'covariates' covariance matrix is invertible, the distances computed are
+#'Mahalanobis distances, or if covariate weights are provided, Reweighted
+#'Mahalanobis distances (see \code{weights} option and Greevy, et al.,
+#'Pharmacoepidemiology and Drug Safety 2012).
 #'
 #'Given a data.frame of covariates, generate a distance matrix.  Missing values
-#'are imputed with fill.missing.  For each column with missing data, a
-#'missingness indicator column will be added.  Phantoms are fake elements that
-#'perfectly match all elements.  They can be used to discard a certain number
-#'of elements.
+#'are imputed with \code{\link{fill.missing}}.  For each column with missing
+#'data, a missingness indicator column will be added.  Phantoms are fake
+#'elements that perfectly match all elements.  They can be used to discard a
+#'certain number of elements.
 #'
 #'@aliases gendistance gendistance,data.frame-method
 #'@param covariate A data.frame object, containing the covariates of the data
