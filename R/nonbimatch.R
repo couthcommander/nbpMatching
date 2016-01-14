@@ -80,7 +80,7 @@ setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision,
         warning("Precision value is too large.  Setting precision to six.")
     }
     myinf <- is.infinite(wt)
-    numdigits <- floor(log10(max(wt[!myinf]))) + 1
+    numdigits <- max(0, floor(log10(max(wt[!myinf])))) + 1
     shift <- 10^(precision-numdigits-1)
     wt <- wt*shift
     # replace Inf with new max
