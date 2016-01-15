@@ -1,3 +1,7 @@
+# nbpmatching 1.5.1
+
+* Bug fix, handles distancematrix with all zeroes
+
 # nbpmatching 1.5.0
 
 * Updated NAMESPACE to include default packages other than base
