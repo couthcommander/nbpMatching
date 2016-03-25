@@ -10,9 +10,9 @@ created.names <- c("phantom", "ghost", "chameleon")
 #'Calculate a name for each pair by using the ID columns from the matched data
 #'set.  Return a factor of these named pairs.
 #'
-#'@aliases get.sets get.sets,data.frame-method
-#'@param matches A data.frame object.  Contains information on how to match the
-#'covariate data set.
+#'@aliases get.sets get.sets,data.frame-method get.sets,nonbimatch-method
+#'@param matches A data.frame or nonbimatch object.  Contains information on
+#'how to match the covariate data set.
 #'@param remove.unpaired A boolean value.  The default is to remove elements
 #'matched to phantom elements.
 #'@param \dots Additional arguments, not used at this time.
@@ -25,6 +25,7 @@ created.names <- c("phantom", "ghost", "chameleon")
 #'df.dist <- gendistance(df, idcol=1)
 #'df.mdm <- distancematrix(df.dist)
 #'df.match <- nonbimatch(df.mdm)
+#'get.sets(df.match)
 #'get.sets(df.match$matches)
 #'# include the phantom match
 #'get.sets(df.match$matches, FALSE)
@@ -37,6 +38,10 @@ setMethod("get.sets", "data.frame", function(matches, remove.unpaired=TRUE, ...)
     names(f.sets) <- sets[,1]
     if(remove.unpaired) f.sets <- f.sets[grep(paste(created.names, collapse="|"), f.sets, invert=TRUE)]
     factor(f.sets)
+})
+
+setMethod("get.sets", "nonbimatch", function(matches, remove.unpaired=TRUE, ...) {
+    get.sets(matches$matches, remove.unpaired, ...)
 })
 
 #'Calculate scalar distance

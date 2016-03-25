@@ -293,17 +293,6 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
         }
     }
 
-    # forced matches/mates should receive a distance of zero -- non-matches receive maxval
-    if(length(mateIDs)) {
-        for(i in seq_along(mateIDs)) {
-            j <- mateIDs[i]
-            if(!is.na(j)) {
-                mdists[i,] <- mdists[,i] <- maxval
-                mdists[i,j] <- mdists[j,i] <- 0
-            }
-        }
-    }
-
     # need to add phantom rows/columns of zero distance
     GROUPS <- 2
     nphantoms <- ndiscard + ((GROUPS - (nr - ndiscard) %% GROUPS) %% GROUPS)
@@ -315,6 +304,18 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
             mdists[tal.fail, pcols] <- mdists[pcols, tal.fail] <- maxval
         }
     }
+
+    # forced matches/mates should receive a distance of zero -- non-matches receive maxval
+    if(length(mateIDs)) {
+        for(i in seq_along(mateIDs)) {
+            j <- mateIDs[i]
+            if(!is.na(j)) {
+                mdists[i,] <- mdists[,i] <- maxval
+                mdists[i,j] <- mdists[j,i] <- 0
+            }
+        }
+    }
+
     diag(mdists) <- maxval
     # convert matrix to data frame
     mdists <- as.data.frame(mdists)

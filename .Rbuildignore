@@ -2,3 +2,5 @@
 ^NEWS\.md$
 ^cran-comments\.md$
 ^\.git$
+^.*\.Rproj$
+^\.Rproj\.user$

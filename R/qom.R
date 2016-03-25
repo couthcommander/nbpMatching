@@ -11,10 +11,10 @@
 #'\code{\link{hdquantile}} from \pkg{Hmisc}.  The quantiles may be slighly
 #'different when using \code{\link{hdquantile}}.
 #'
-#'@aliases qom qom,data.frame-method
+#'@aliases qom qom,data.frame,data.frame-method qom,data.frame,nonbimatch-method
 #'@param covariate A data.frame object.
-#'@param matches A data.frame object.  Contains information on how to match the
-#'covariate data set.
+#'@param matches A data.frame or nonbimatch object.  Contains information on
+#'how to match the covariate data set.
 #'@param iterations An integer.  Number of iterations to run, defaults to
 #'10,000.
 #'@param probs A numeric vector.  Probabilities to pass to the quantile
@@ -41,12 +41,13 @@
 #'df.dist <- gendistance(df, idcol=1)
 #'df.mdm <- distancematrix(df.dist)
 #'df.match <- nonbimatch(df.mdm)
+#'qom(df.dist$cov, df.match)
 #'qom(df.dist$cov, df.match$matches)
 #'
 
 setGeneric("qom", function(covariate, matches, iterations=10000, probs=NA,
            use.se=FALSE, all.vals=FALSE, seed=101, ...) standardGeneric("qom"))
-setMethod("qom", "data.frame", function(covariate, matches, iterations=10000,
+setMethod("qom", signature(covariate="data.frame", matches="data.frame"), function(covariate, matches, iterations=10000,
           probs=NA, use.se=FALSE, all.vals=FALSE, seed=101, ...) {
     if(exists(".Random.seed", envir = .GlobalEnv)) {
         save.seed <- get(".Random.seed", envir= .GlobalEnv)
@@ -158,4 +159,9 @@ setMethod("qom", "data.frame", function(covariate, matches, iterations=10000,
     }
     pairsumm <- round(pairsumm, digits)
     list(q=pairsumm, se=pair.se, sd=pair.sd)
+})
+
+setMethod("qom", signature(covariate="data.frame", matches="nonbimatch"), function(covariate, matches, iterations=10000,
+          probs=NA, use.se=FALSE, all.vals=FALSE, seed=101, ...) {
+    qom(covariate, matches$matches, iterations, probs, use.se, all.vals, seed, ...)
 })

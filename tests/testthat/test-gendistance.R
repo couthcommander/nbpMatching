@@ -16,19 +16,19 @@ maxval <- Inf
 test_that("gendistance fails on empty data.frame", {
   testthat::skip_on_cran()
   expect_error(gendistance(cov[FALSE,]))
-  expect_error(gendistance(cov[11,]))
-  expect_error(gendistance(cov[11:12,]))
+  expect_error(gendistance(cov[11,], idcol=1))
+  expect_error(expect_warning(gendistance(cov[11:12,], idcol=1)))
 })
 
 test_that("gendistance creates NxN matrix", {
   testthat::skip_on_cran()
-  x <- gendistance(cov[,1:5])
+  x <- gendistance(cov[,1:5], idcol=1)
   expect_equal(dim(x$dist), rep(nrow(cov), 2))
 })
 
 test_that("gendistance creates NxN matrix with phantoms", {
   testthat::skip_on_cran()
-  x <- gendistance(cov[,1:5], ndiscard=2)
+  x <- gendistance(cov[,1:5], idcol=1, ndiscard=2)
   expect_equal(dim(x$dist), rep(nrow(cov)+2, 2))
   expect_equal(x$ndiscard, 2)
 })

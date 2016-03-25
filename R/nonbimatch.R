@@ -1,3 +1,6 @@
+#' @include distancematrix.R
+NULL
+
 #'Nonbipartite Matching
 #'
 #'The nonbinmatch function creates the set of pairwise matches that minimizes
@@ -6,14 +9,14 @@
 #'The nonbinmatch function calls the Fortran code (Derigs) and set of pairwise
 #'matches that minimizes the sum of distances between the pairs.
 #'
-#'@aliases nonbimatch nonbimatch,distancematrix-method
+#'@aliases nonbimatch nonbimatch,distancematrix-method nonbimatch-class
 #'@param mdm A distancematrix object.  See the distancematrix function.
-#'@param threshold An integer value, indicating the distance needed to create
+#'@param threshold An numeric value, indicating the distance needed to create
 #'chameleon matches.
 #'@param precision The largest value in the matrix will have at most this many
 #'digits.  The default value is six.
 #'@param \dots Additional arguments, these are not used.
-#'@return
+#'@return nonbimatch S4 object with several elements
 #'
 #'  \item{matches}{description data.frame containing matches}
 #'
@@ -22,6 +25,7 @@
 #'  \item{total}{description sum of the distances across all pairs}
 #'
 #'  \item{mean}{description mean distance for each pair}
+#'@exportClass nonbimatch
 #'@exportMethod nonbimatch
 #'@author Cole Beck
 #'@seealso \code{\link{distancematrix}}
@@ -62,35 +66,34 @@ setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision,
         mdm <- do.call("rbind", c(list(mdm), newvals))
         n <- n*2
     } else threshold <- NA
-    ## consider replacing Inf in mdm here
-    if(FALSE) {
-        suppressWarnings(class(mdm) <- 'matrix')
-        myinf <- is.infinite(mdm)
-        numdigits <- floor(log10(max(mdm[!myinf]))) + 1
-        mdm[myinf] <- 2*10^numdigits
-    }
 
     wt <- c(mdm)
     nmatch <- seq_len(n)
     if(!is.numeric(precision) || precision < 1) {
         precision <- 6
         warning("Precision value is too small.  Setting precision to six.")
-    } else if(precision > 10) {
+    } else if(precision >= 10) {
         precision <- 6
         warning("Precision value is too large.  Setting precision to six.")
     }
     myinf <- is.infinite(wt)
     numdigits <- max(0, floor(log10(max(wt[!myinf])))) + 1
-    shift <- 10^(precision-numdigits-1)
-    wt <- wt*shift
+    shift <- 10^(precision-numdigits)
+    if(shift != 1) wt <- wt*shift
     # replace Inf with new max
-    wt[myinf] <- 2*10^(precision-1)
+    if(any(myinf)) {
+        wt[myinf] <- 2*10^precision
+        # update precision based on new max value
+        precision <- precision + 1
+    }
+    # the real test should be:
+    # max(wt) > .Machine$integer.max
     # the largest number will have at most [precision] digits (defaulting to six)
     # warning: if the vector is large and there are too many digits, the Fortran call will crash
     if(shift < 1) {
         print(sprintf("Note: Distances scaled by %s to ensure all data can be handled", shift))
     }
-    match <- .Fortran(mwrap, n=as.integer(n), wt=as.integer(wt), nmatch=as.vector(nmatch), prcn=precision)$nmatch
+    match <- .Fortran(mwrap, n=as.integer(n), wt=as.integer(wt), nmatch=as.vector(nmatch), prcn=as.integer(precision))$nmatch
 
     # remove chameleon to chameleon matches
     if(!is.na(threshold)) {
@@ -116,7 +119,13 @@ setMethod("nonbimatch", "distancematrix", function(mdm, threshold=NA, precision,
     distance <- sum(matches[,5])
     total <- distance/2
     mean <- distance/n
-    list(matches=matches, halves=halves, total=total, mean=mean)
+    new("nonbimatch", list(matches=matches, halves=halves, total=total, mean=mean))
+})
+
+setClass("nonbimatch", contains = "list")
+
+setMethod("show", signature(object="nonbimatch"), function(object) {
+    print(setNames(object@.Data, names(object)))
 })
 
 # runner starts with covariate matrix, generates distances, finds matches, and reports QoM

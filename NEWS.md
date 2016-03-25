@@ -1,6 +1,12 @@
 # nbpmatching 1.5.1
 
 * Bug fix, handles distancematrix with all zeroes
+* Rework how `nonbimatch` handles precision when input includes Inf distances
+* Bug fix, `nonbimatch` passes precision to Fortran call
+* `nonbimatch` creates class of the same name
+* add `subsetMatches` method
+* include nonbimatch-method for `assign.grp`, `qom`, `get.sets`
+* `gendistance` produces Inf distance to phantoms on elements with forced matches
 
 # nbpmatching 1.5.0
 
