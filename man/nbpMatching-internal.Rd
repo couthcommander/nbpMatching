@@ -2,7 +2,9 @@
 % Please edit documentation in R/nbpmatching-package.R
 \name{nbpMatching-internal}
 \alias{.requireCachedGenerics}
+\alias{[<-,distancematrix,ANY,ANY,ANY-method}
 \alias{[<-,distancematrix-method}
+\alias{[[<-,distancematrix,ANY,ANY,ANY-method}
 \alias{[[<-,distancematrix-method}
 \alias{full.qom}
 \alias{full.qom,data.frame-method}

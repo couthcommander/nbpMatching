@@ -1,5 +1,5 @@
 ## Test environments
-* ubuntu 15.04, R 3.2.3
+* ubuntu 15.04, R 3.2.5
 * win-builder (devel and release)
 
 ## R CMD check results

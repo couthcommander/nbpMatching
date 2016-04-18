@@ -22,13 +22,13 @@ digits.  The default value is six.}
 \value{
 nonbimatch S4 object with several elements
 
- \item{matches}{description data.frame containing matches}
+ \item{matches}{data.frame containing matches}
 
- \item{halves}{description data.frame containing each match}
+ \item{halves}{data.frame containing each match}
 
- \item{total}{description sum of the distances across all pairs}
+ \item{total}{sum of the distances across all pairs}
 
- \item{mean}{description mean distance for each pair}
+ \item{mean}{mean distance for each pair}
 }
 \description{
 The nonbinmatch function creates the set of pairwise matches that minimizes

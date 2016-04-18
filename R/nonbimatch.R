@@ -18,13 +18,13 @@ NULL
 #'@param \dots Additional arguments, these are not used.
 #'@return nonbimatch S4 object with several elements
 #'
-#'  \item{matches}{description data.frame containing matches}
+#'  \item{matches}{data.frame containing matches}
 #'
-#'  \item{halves}{description data.frame containing each match}
+#'  \item{halves}{data.frame containing each match}
 #'
-#'  \item{total}{description sum of the distances across all pairs}
+#'  \item{total}{sum of the distances across all pairs}
 #'
-#'  \item{mean}{description mean distance for each pair}
+#'  \item{mean}{mean distance for each pair}
 #'@exportClass nonbimatch
 #'@exportMethod nonbimatch
 #'@author Cole Beck

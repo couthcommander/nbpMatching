@@ -62,7 +62,11 @@ NULL
 #'This function should not be called by the user.
 #'
 #'@name nbpMatching-internal
-#'@aliases .requireCachedGenerics initialize,distancematrix-method [<-,distancematrix-method [[<-,distancematrix-method runner runner,data.frame-method full.qom full.qom,data.frame-method show,nonbimatch-method
+#'@aliases .requireCachedGenerics initialize,distancematrix-method
+#'[<-,distancematrix,ANY,ANY,ANY-method [<-,distancematrix-method
+#'[[<-,distancematrix,ANY,ANY,ANY-method [[<-,distancematrix-method
+#'runner runner,data.frame-method full.qom full.qom,data.frame-method
+#'show,nonbimatch-method
 #'@exportMethod runner
 #'@exportMethod full.qom
 #'@keywords internal

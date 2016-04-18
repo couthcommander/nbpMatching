@@ -7,6 +7,8 @@
 * add `subsetMatches` method
 * include nonbimatch-method for `assign.grp`, `qom`, `get.sets`
 * `gendistance` produces Inf distance to phantoms on elements with forced matches
+* documentation fix for undocumented S4 methods warning
+* moving suggested package testthat outside of package
 
 # nbpmatching 1.5.0
 
