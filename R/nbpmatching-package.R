@@ -28,7 +28,7 @@
 #'@importFrom Hmisc transcan hdquantile
 #'@importFrom MASS ginv
 #'@importFrom utils read.csv
-#'@useDynLib nbpMatching mwrap
+#'@useDynLib nbpMatching, .registration = TRUE
 #'@examples
 #'
 #'# create a covariate matrix
