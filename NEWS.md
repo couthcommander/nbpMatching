@@ -1,3 +1,9 @@
+# nbpmatching 1.5.3
+* additional check for singular matrix in `gendistance`; thanks Jonathan Chipman
+
+# nbpmatching 1.5.2
+* properly register Fortran calls
+
 # nbpmatching 1.5.1
 
 * Bug fix, handles distancematrix with all zeroes

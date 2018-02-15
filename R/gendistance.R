@@ -243,8 +243,12 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
 
     # Create the covariance matrix and invert it
     X.cov <- cov.wt(X)
+    if(qr(X)$rank == nrow(X.cov$cov)) {
+        Sinv <- tryCatch(solve(X.cov$cov), error=function(e) { warning(e[[1]]); NULL })
+    } else {
+        Sinv <- NULL
+    }
     # use pseudo-inverse if matrix is singular
-    Sinv <- tryCatch(solve(X.cov$cov), error=function(e) { warning(e[[1]]); NULL })
     if(is.null(Sinv)) {
         # options for singular.method: [solve, ginv]
         if(is.null(singular.method) || !is.character(singular.method)) singular.method <- 'solve'
