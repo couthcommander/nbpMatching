@@ -8,7 +8,7 @@
 gendistance(covariate, idcol = NULL, weights = NULL, prevent = NULL,
   force = NULL, rankcols = NULL, missing.weight = 0.1, ndiscard = 0,
   singular.method = "solve", talisman = NULL, prevent.res.match = NULL,
-  ...)
+  outRawDist = FALSE, ...)
 }
 \arguments{
 \item{covariate}{A data.frame object, containing the covariates of the data
@@ -56,6 +56,10 @@ trickle-in randomized trials.  When set, non-NA values from this column are
 replaced with the value 1.  This prevents records with previously assigned
 treatments (the \sQuote{reservior}) from matching each other.}
 
+\item{outRawDist}{a logical, indicating if the raw distance matrix should also
+be returned.  The raw form is before distance modifiers such as \sQuote{prevent}
+take effect.}
+
 \item{\dots}{Additional arguments, not used at this time.}
 }
 \value{
@@ -78,6 +82,8 @@ a list object with several elements
  \item{missing.weight}{weight to apply to missingness indicator columns}
 
  \item{ndiscard}{number of elements that will match phantoms}
+
+ \item{rawDist}{raw distance matrix, only provided if \sQuote{outRawDist} is TRUE}
 }
 \description{
 The gendistance function creates an \eqn{(N+K)}x\eqn{(N+K)} distance matrix
