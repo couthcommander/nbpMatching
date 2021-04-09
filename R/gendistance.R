@@ -108,6 +108,16 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
     mateIDs <- integer(0)
     bad.data <- NULL
 
+    # warning for factor variables
+    factorcols <- setdiff(which(sapply(covariate, is.factor)), idcol)
+    if(length(factorcols)) {
+      warning(sprintf("Factor variables will be converted into numeric which may not be ideal; consider converting factor variables [%s] before calling gendistance", paste(mycolnames[factorcols], collapse=', ')))
+      # convert factor to numeric
+      for(i in factorcols) {
+        covariate[,i] <- as.numeric(covariate[,i])
+      }
+    }
+
     # columns that aren't numeric should be marked bad
     badcol <- which(sapply(1:nc, FUN=function(x) suppressWarnings(!is.numeric(covariate[,x]))))
     # if all values in a column are the same, mark as bad column
@@ -121,12 +131,6 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
             row.names(covariate) <- myrownames
             badcol <- union(badcol, idcol)
         }
-    }
-
-    # warning for factor variables
-    factorcols <- setdiff(which(sapply(covariate, is.factor)), idcol)
-    if(length(factorcols)) {
-      warning(sprintf("consider converting factor variables [%s] before calling gendistance", paste(mycolnames[factorcols], collapse=', ')))
     }
 
     if(is.null(weights)) {

@@ -88,6 +88,12 @@ setMethod("initialize", "distancematrix", function(.Object, ...) {
     if(any(is.na(as.numeric(.Object)))) {
         stop("Elements of a distance matrix must be numeric")
     }
+    # if no rownames, default to row number
+    if(is.null(dimnames(.Object))) {
+      mynames <- as.character(seq(nr))
+      colnames(.Object) <- mynames
+      rownames(.Object) <- mynames
+    }
     if(nr %% 2 == 1) {
         warning("There must be an even number of elements\nAdding a ghost value")
         .Object@.Data <- rbind(.Object@.Data, rep(0, nc))
