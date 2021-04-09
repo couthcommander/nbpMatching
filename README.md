@@ -1,4 +1,4 @@
 # nbpMatching
 R package for nonbipartite matching
 
-http://biostat.mc.vanderbilt.edu/wiki/Main/MatchedRandomization
+https://biostat.app.vumc.org/wiki/Main/MatchedRandomization
