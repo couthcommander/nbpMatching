@@ -756,7 +756,8 @@ C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
       INTEGER  NB(N*(N-1))
       DOUBLE PRECISION     D,DD,Y1(N),DFLOAT
       DO  10  I=1,N
-   10 NMATCH(I)=TOP
+          NMATCH(I)=TOP
+   10 CONTINUE
       JJCE=INDEX(1)
       CQ=CE(JJCE)
       N1=INDEX(N)-1
@@ -765,7 +766,8 @@ C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
   100 CONTINUE
       D=DFLOAT(CQ)/2.
       DO 110  I=1,N
-  110 Y1(I)=D
+          Y1(I)=D
+  110 CONTINUE
       NCARD=0
       DO 150  I=1,N
          IF(NMATCH(I).LT.TOP)          GOTO 150

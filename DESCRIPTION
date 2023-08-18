@@ -1,12 +1,12 @@
 Package: nbpMatching
 Type: Package
 Title: Functions for Optimal Non-Bipartite Matching
-Version: 1.5.3
-Date: 2018-02-15
+Version: 1.5.4
+Date: 2023-08-18
 Author: Cole Beck [aut, cre], Bo Lu [aut], Robert Greevy [aut]
-Maintainer: Cole Beck <cole.beck@vanderbilt.edu>
+Maintainer: Cole Beck <cole.beck@vumc.org>
 Authors@R: c(person("Cole", "Beck", role = c("aut", "cre"),
-    email = "cole.beck@vanderbilt.edu"),
+    email = "cole.beck@vumc.org"),
     person("Bo", "Lu", role = "aut"),
     person("Robert", "Greevy", role = "aut"))
 Description: Perform non-bipartite matching and matched randomization. A
@@ -32,7 +32,7 @@ Imports:
     Hmisc,
     MASS,
     utils
-URL: http://biostat.mc.vanderbilt.edu/wiki/Main/MatchedRandomization
+URL: https://biostat.app.vumc.org/wiki/Main/MatchedRandomization
 Collate:
     'distancematrix.R'
     'nonbimatch.R'
@@ -45,4 +45,4 @@ Collate:
     'quantile.R'
     'subsetMatches.R'
     'utils.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 7.2.3

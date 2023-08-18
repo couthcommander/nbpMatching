@@ -5,7 +5,7 @@
 #'running nonbimatch.
 #'
 #'The most current documentation is available at
-#'\url{http://biostat.mc.vanderbilt.edu/wiki/Main/MatchedRandomization}.
+#'\url{https://biostat.app.vumc.org/wiki/Main/MatchedRandomization}.
 #'
 #'
 #'@name nbpMatching-package
@@ -13,7 +13,7 @@
 #'@docType package
 #'@author Bo Lu, Robert Greevy, Cole Beck
 #'
-#'Maintainer: Cole Beck \email{cole.beck@@vanderbilt.edu}
+#'Maintainer: Cole Beck \email{cole.beck@@vumc.org}
 #'@references Lu B, Greevy R, Xu X, Beck C. Optimal Nonbipartite Matching and
 #'its Statistical Applications. The American Statistician. Vol. 65, no. 1. :
 #'21-30. 2011.
@@ -53,7 +53,7 @@
 #'nonbimatch(distancematrix(as.matrix(dist(sample(1:10^8, 5000, replace=TRUE)))))
 #'}
 #'
-NULL
+"_PACKAGE"
 
 #'Internal nbpMatching objects.
 #'
@@ -73,12 +73,12 @@ NULL
 #'
 NULL
 
-.onAttach <- function(libname, pkgname) {
-    packageStartupMessage("Notice:
-Formerly the gendistance() function scaled the Mahalanobis distances into large
-integers, as required by the nonbimatch() function. Starting in version 1.5.0,
-gendistance() will return unscaled distances. This facilitates comparison to an
-appropriate F distribution for multivariate normal data. Any required scaling
-will happen invisibly within nonbimatch(). This notice will be removed in a
-future version of nbpMatching.")
-}
+# .onAttach <- function(libname, pkgname) {
+#     packageStartupMessage("Notice:
+# Formerly the gendistance() function scaled the Mahalanobis distances into large
+# integers, as required by the nonbimatch() function. Starting in version 1.5.0,
+# gendistance() will return unscaled distances. This facilitates comparison to an
+# appropriate F distribution for multivariate normal data. Any required scaling
+# will happen invisibly within nonbimatch(). This notice will be removed in a
+# future version of nbpMatching.")
+# }

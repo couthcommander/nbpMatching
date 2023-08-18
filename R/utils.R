@@ -18,7 +18,7 @@ created.names <- c("phantom", "ghost", "chameleon")
 #'@param \dots Additional arguments, not used at this time.
 #'@return a factor vector
 #'@exportMethod get.sets
-#'@author Jake Bowers, \url{http://jakebowers.org/}, Cole Beck
+#'@author Jake Bowers, \url{http://www.jakebowers.org/}, Cole Beck
 #'@examples
 #'
 #'df <- data.frame(id=LETTERS[1:25], val1=rnorm(25), val2=rnorm(25))
@@ -56,7 +56,7 @@ setMethod("get.sets", "nonbimatch", function(matches, remove.unpaired=TRUE, ...)
 #'@param \dots Additional arguments, not used at this time.
 #'@return a matrix object
 #'@exportMethod scalar.dist
-#'@author Jake Bowers, \url{http://jakebowers.org/}, Cole Beck
+#'@author Jake Bowers, \url{http://www.jakebowers.org/}, Cole Beck
 #'@examples
 #'
 #'scalar.dist(1:10)

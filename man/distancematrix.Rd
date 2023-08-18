@@ -3,11 +3,11 @@
 \docType{class}
 \name{distancematrix}
 \alias{distancematrix}
+\alias{distancematrix-class}
+\alias{distancematrix,matrix-method}
 \alias{distancematrix,character-method}
 \alias{distancematrix,data.frame-method}
 \alias{distancematrix,list-method}
-\alias{distancematrix,matrix-method}
-\alias{distancematrix-class}
 \title{Distance matrix}
 \usage{
 distancematrix(x, ...)
@@ -71,10 +71,9 @@ df.dist <- gendistance(df, idcol=1, ndiscard=2)
 mdm2 <- distancematrix(df.dist)
 
 }
-\author{
-Cole Beck
-}
 \seealso{
 \code{\link{nonbimatch} \link{gendistance}}
 }
-
+\author{
+Cole Beck
+}

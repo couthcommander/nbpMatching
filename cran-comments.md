@@ -1,6 +1,7 @@
 ## Test environments
-* ubuntu 16.04, R 3.4.3
+* ubuntu 20.04, R 4.3.1
 * win-builder (devel and release)
+* mac-builder (release)
 
 ## R CMD check results
 There were no ERRORs or WARNINGs.

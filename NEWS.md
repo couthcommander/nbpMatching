@@ -1,3 +1,7 @@
+# nbpmatching 1.5.4
+* fix old Fortran warning
+* update maintainer email
+
 # nbpmatching 1.5.3
 * additional check for singular matrix in `gendistance`; thanks Jonathan Chipman
 * new `gendistance` argument `outRawDist`

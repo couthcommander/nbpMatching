@@ -5,10 +5,21 @@
 \alias{gendistance,data.frame-method}
 \title{Generate a Distance Matrix}
 \usage{
-gendistance(covariate, idcol = NULL, weights = NULL, prevent = NULL,
-  force = NULL, rankcols = NULL, missing.weight = 0.1, ndiscard = 0,
-  singular.method = "solve", talisman = NULL, prevent.res.match = NULL,
-  outRawDist = FALSE, ...)
+gendistance(
+  covariate,
+  idcol = NULL,
+  weights = NULL,
+  prevent = NULL,
+  force = NULL,
+  rankcols = NULL,
+  missing.weight = 0.1,
+  ndiscard = 0,
+  singular.method = "solve",
+  talisman = NULL,
+  prevent.res.match = NULL,
+  outRawDist = FALSE,
+  ...
+)
 }
 \arguments{
 \item{covariate}{A data.frame object, containing the covariates of the data
@@ -116,10 +127,9 @@ df.sing.solve <- gendistance(df, idcol=1, ndiscard=2)
 df.sing.ginv <- gendistance(df, idcol=1, ndiscard=2, singular.method="ginv")
 
 }
-\author{
-Cole Beck
-}
 \seealso{
 \code{\link{distancematrix}}
 }
-
+\author{
+Cole Beck
+}

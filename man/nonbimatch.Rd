@@ -48,10 +48,9 @@ mdm<-distancematrix(plainmatrix)
 res<-nonbimatch(mdm)
 
 }
-\author{
-Cole Beck
-}
 \seealso{
 \code{\link{distancematrix}}
 }
-
+\author{
+Cole Beck
+}

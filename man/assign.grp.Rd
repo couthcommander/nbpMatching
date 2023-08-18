@@ -36,10 +36,9 @@ assign.grp(df.match)
 assign.grp(df.match$matches)
 
 }
-\author{
-Cole Beck
-}
 \seealso{
 \code{\link{nonbimatch}}
 }
-
+\author{
+Cole Beck
+}

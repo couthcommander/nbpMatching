@@ -2,8 +2,9 @@
 % Please edit documentation in R/nbpmatching-package.R
 \docType{package}
 \name{nbpMatching-package}
-\alias{nbpMatching}
 \alias{nbpMatching-package}
+\alias{_PACKAGE}
+\alias{nbpMatching}
 \title{Nonbipartite Matching}
 \description{
 This package will take an input distance matrix and generate the set of
@@ -12,7 +13,7 @@ running nonbimatch.
 }
 \details{
 The most current documentation is available at
-\url{http://biostat.mc.vanderbilt.edu/wiki/Main/MatchedRandomization}.
+\url{https://biostat.app.vumc.org/wiki/Main/MatchedRandomization}.
 }
 \examples{
 
@@ -39,11 +40,6 @@ nonbimatch(distancematrix(as.matrix(dist(sample(1:10^8, 5000, replace=TRUE)))))
 }
 
 }
-\author{
-Bo Lu, Robert Greevy, Cole Beck
-
-Maintainer: Cole Beck \email{cole.beck@vanderbilt.edu}
-}
 \references{
 Lu B, Greevy R, Xu X, Beck C. Optimal Nonbipartite Matching and
 its Statistical Applications. The American Statistician. Vol. 65, no. 1. :
@@ -54,7 +50,18 @@ Griffin MR. Reweighted Mahalanobis distance matching for cluster-randomized
 trials with missing data. Pharmacoepidemiol Drug Saf. 2012 May;21 Suppl
 2:148-54. doi: 10.1002/pds.3260.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://biostat.app.vumc.org/wiki/Main/MatchedRandomization}
+}
+
+}
+\author{
+Bo Lu, Robert Greevy, Cole Beck
+
+Maintainer: Cole Beck \email{cole.beck@vumc.org}
+}
 \keyword{array}
 \keyword{cluster}
 \keyword{package}
-

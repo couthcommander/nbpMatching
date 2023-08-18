@@ -40,6 +40,5 @@ get.sets(df.match$matches, FALSE)
 
 }
 \author{
-Jake Bowers, \url{http://jakebowers.org/}, Cole Beck
+Jake Bowers, \url{http://www.jakebowers.org/}, Cole Beck
 }
-

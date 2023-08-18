@@ -44,10 +44,9 @@ df[sample(seq_len(nrow(df)), ceiling(nrow(df)*0.1)), 2] <- NA
 df <- fill.missing(df)
 
 }
-\author{
-Cole Beck
-}
 \seealso{
 \code{\link{transcan}}
 }
-
+\author{
+Cole Beck
+}

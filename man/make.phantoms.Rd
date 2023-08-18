@@ -49,10 +49,9 @@ distancematrix(dm.ph)
 make.phantoms(dist.mat, 3)
 
 }
-\author{
-Cole Beck
-}
 \seealso{
 \code{\link{gendistance}} \code{\link{distancematrix}}
 }
-
+\author{
+Cole Beck
+}

@@ -5,8 +5,14 @@
 \alias{subsetMatches,nonbimatch-method}
 \title{Subset Matches}
 \usage{
-subsetMatches(matches, phantom = TRUE, chameleon = TRUE, ghost = TRUE,
-  infinite = TRUE, halvesOnly = TRUE)
+subsetMatches(
+  matches,
+  phantom = TRUE,
+  chameleon = TRUE,
+  ghost = TRUE,
+  infinite = TRUE,
+  halvesOnly = TRUE
+)
 }
 \arguments{
 \item{matches}{A nonbimatch object.}
@@ -48,4 +54,3 @@ subsetMatches(df.match, phantom=FALSE)
 \author{
 Cole Beck
 }
-

@@ -6,8 +6,16 @@
 \alias{qom,data.frame,nonbimatch-method}
 \title{Quality of Match}
 \usage{
-qom(covariate, matches, iterations = 10000, probs = NA, use.se = FALSE,
-  all.vals = FALSE, seed = 101, ...)
+qom(
+  covariate,
+  matches,
+  iterations = 10000,
+  probs = NA,
+  use.se = FALSE,
+  all.vals = FALSE,
+  seed = 101,
+  ...
+)
 }
 \arguments{
 \item{covariate}{A data.frame object.}
@@ -67,4 +75,3 @@ qom(df.dist$cov, df.match$matches)
 \author{
 Cole Beck
 }
-
