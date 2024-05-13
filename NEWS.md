@@ -1,3 +1,6 @@
+# nbpmatching 1.5.5
+* fix Fortran warning from legacy code
+
 # nbpmatching 1.5.4
 * fix old Fortran warning
 * update maintainer email
