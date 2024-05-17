@@ -3,7 +3,6 @@
 \docType{package}
 \name{nbpMatching-package}
 \alias{nbpMatching-package}
-\alias{_PACKAGE}
 \alias{nbpMatching}
 \title{Nonbipartite Matching}
 \description{
