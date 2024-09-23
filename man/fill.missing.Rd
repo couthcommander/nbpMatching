@@ -19,18 +19,18 @@ fill.missing(x, seed = 101, simplify = TRUE, idcol = "id", ...)
 containing IDs, specified as column index or column name.  Defaults to "id",
 or NA, when not found.}
 
-\item{\dots}{Additional arguments, potentially passed to \code{\link{transcan}}.}
+\item{\dots}{Additional arguments, potentially passed to \code{\link[Hmisc]{transcan}}.}
 }
 \value{
 data.frame with imputed values
 }
 \description{
-The fill.missing function uses the \code{\link{transcan}} function from the
+The fill.missing function uses the \code{\link[Hmisc]{transcan}} function from the
 \pkg{Hmisc} package to impute values for the given data.frame.
 }
 \details{
 The fill.missing function will fill the missing values within a data.frame
-with the values imputed with the \code{\link{transcan}} function.  An idcol may be
+with the values imputed with the \code{\link[Hmisc]{transcan}} function.  An idcol may be
 specified to prevent including the use of IDs in the imputation.  In addition
 for every column that contains missing data, a new column will be attached to
 the data.frame containing an indicator of missingness.  A "1" indicates that
@@ -45,7 +45,7 @@ df <- fill.missing(df)
 
 }
 \seealso{
-\code{\link{transcan}}
+\code{\link[Hmisc]{transcan}}
 }
 \author{
 Cole Beck

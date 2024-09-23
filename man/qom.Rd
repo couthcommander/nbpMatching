@@ -59,8 +59,8 @@ This fuction is useful for determining the effectiveness of your weights
 (when generating a distance matrix).  Weighting a variable more will lower
 the average distance, but it could penalize the distance of the other
 variables. Calculating the standard error requires calling
-\code{\link{hdquantile}} from \pkg{Hmisc}.  The quantiles may be slighly
-different when using \code{\link{hdquantile}}.
+\code{\link[Hmisc]{hdquantile}} from \pkg{Hmisc}.  The quantiles may be slightly
+different when using \code{\link[Hmisc]{hdquantile}}.
 }
 \examples{
 

@@ -66,7 +66,7 @@ C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
       INTEGER    CC(2*M),SM(N),TMA(N),TMB(N),INDEX(N+1)
       INTEGER  NBL(2*M)
       DOUBLE PRECISION Y1(N),Y2(N),DMINUS(N),DPLUS(N),C0,D,DBEST,Y1B,
-     *                 Y2B,YB,DFLOAT
+     *                 Y2B,YB
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** START
 C
@@ -112,7 +112,7 @@ C
           NB2       =BASIS(N2)
       IF (NB1.EQ.NB2)                   GOTO 130
           NC        =CC(I3)
-          C0        =DFLOAT(NC)-Y1B-Y2B
+          C0        =DBLE(NC)-Y1B-Y2B
           C0        =C0-Y1(NB2)-Y2(N2)
       IF (C0.GE.DMINUS(NB2))            GOTO 130
           KA(NB2)   =N1
@@ -209,7 +209,7 @@ C
       INTEGER    TOP,NMATCH(N)
       INTEGER  NBL(N*(N-1))
       DOUBLE PRECISION Y1(N),Y2(N),DMINUS(N),DPLUS(N),C0,D,DBEST,Y1B,
-     *                 Y2B,YB,DFLOAT
+     *                 Y2B,YB
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** AUGMENTATION OF THE MATCHING
 C     EXCHANGE OF THE MATCHING-	AND NON-MATCHING-EDGES ALONG
@@ -268,7 +268,7 @@ C
       INTEGER    TOP,NMATCH(N)
       INTEGER  NBL(N*(N-1))
       DOUBLE PRECISION Y1(N),Y2(N),DMINUS(N),DPLUS(N),C0,D,DBEST,Y1B,
-     *                 Y2B,YB,DFLOAT
+     *                 Y2B,YB
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** EXPANSION	OF A T-LABELED BLOSSOM
 C
@@ -392,7 +392,7 @@ C
       INTEGER    CC(N*(N-1)),SM(N),TMA(N),TMB(N),INDEX(N+1)
       INTEGER    TOP,NMATCH(N)
       INTEGER  NBL(N*(N-1))
-      DOUBLE PRECISION Y1(N),Y2(N),DMINUS(N),DPLUS(N),DBEST,DFLOAT
+      DOUBLE PRECISION Y1(N),Y2(N),DMINUS(N),DPLUS(N),DBEST
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** GROWING AN ALTERNATING TREE BY ADDING TWO	EDGES
 C
@@ -413,7 +413,7 @@ C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
      F           NMATCH(N),MEM(N),BASIS(N),KA(N),KB(N)
       INTEGER  NBL(N*(N-1))
       DOUBLE PRECISION DPLUS(N),DMINUS(N),Y1(N),Y2(N),C0,D,DBEST,YB,
-     F                 Y1B,DFLOAT
+     F                 Y1B
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** GENERATION OF THE	ORIGINAL GRAPH BY EXPANSION OF ALL
 C     SHRUNKEN BLOSSOMS
@@ -433,7 +433,7 @@ C
           IF(NBL(I3).EQ.N2) GO TO 9001
  9000     CONTINUE
  9001     NC        =CC(I3)
-          D         =DFLOAT(NC)-Y1(NB1)-Y1(NB2)
+          D         =DBLE(NC)-Y1(NB1)-Y1(NB2)
           D         =D-Y2(N1)-Y2(N2)
       IF (DABS(D).GT.EPS)     CALL RPRINT(N1,N2,D)
           ZFW       =ZFW+NC
@@ -484,7 +484,7 @@ C
           IF(NBL(I3).EQ.NK2) GO TO 9003
  9002     CONTINUE
  9003     NC        =CC(I3)
-          D         =DFLOAT(NC)-Y1(NB1)-Y1(NB2)
+          D         =DBLE(NC)-Y1(NB1)-Y1(NB2)
           D         =D-Y2(NK1)-Y2(NK2)
       IF (DABS(D).GT.EPS)     CALL RPRINT(NK1,NK2,D)
           ZFW       =ZFW+NC
@@ -499,7 +499,7 @@ C
           IF(NBL(I3).EQ.N3) GO TO 9005
  9004     CONTINUE
  9005     NC        =CC(I3)
-          D         =DFLOAT(NC)-Y1(NB2)-Y1(NB3)
+          D         =DBLE(NC)-Y1(NB2)-Y1(NB3)
           D         =D-Y2(N2)-Y2(N3)
       IF (DABS(D).GT.EPS)     CALL RPRINT(N2,N3,D)
           ZFW       =ZFW+NC
@@ -531,8 +531,7 @@ C
       INTEGER    BASIS(N),MEM(N),KA(N),KB(N)
       INTEGER    CC(N*(N-1)),SM(N),TMA(N),TMB(N),INDEX(N+1)
       INTEGER  NBL(N*(N-1))
-      DOUBLE PRECISION     Y1(N),Y2(N),DPLUS(N),DMINUS(N),D1,D2,C0,
-     F                     DFLOAT
+      DOUBLE PRECISION     Y1(N),Y2(N),DPLUS(N),DMINUS(N),D1,D2,C0
 C
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** SCANNING OF NODE NB1
@@ -549,7 +548,7 @@ C
           NB2       =BASIS(N2)
       IF (TMA(NB2).LT.TOP)              GOTO 300
           NC        =CC(IC)
-          C0        =DFLOAT(NC)+D2
+          C0        =DBLE(NC)+D2
           C0        =C0-Y1(NB2)-Y2(N2)
       IF (C0.GE.DMINUS(NB2))            GOTO 300
           KA(NB2)   =NB1
@@ -566,7 +565,7 @@ C
           NB2       =BASIS(N2)
       IF (TMA(NB2).LT.TOP) GO TO 310
           NC        =CC(I3)
-          C0        =DFLOAT(NC)+D2
+          C0        =DBLE(NC)+D2
           C0        =C0-Y1(NB2)-Y2(N2)
       IF (C0.GE.DMINUS(NB2))            GOTO 310
           KA(NB2)   =N1
@@ -585,7 +584,7 @@ C
       INTEGER    CC(N*(N-1)),SM(N),TMA(N),TMB(N),INDEX(N+1)
       INTEGER  NBL(N*(N-1))
       DOUBLE PRECISION     Y1(N),Y2(N),DMINUS(N),DPLUS(N),D,C0,Y1B,
-     F                     Y2B,DFLOAT
+     F                     Y2B
 C
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** SCANNING OF NODE NB
@@ -608,7 +607,7 @@ C
           NB2       =BASIS(N2)
       IF (SM(NB2).GE.TOP)               GOTO 320
           NC        =CC(I3)
-          C0        =DFLOAT(NC)-Y1B-Y2B
+          C0        =DBLE(NC)-Y1B-Y2B
           C0        =C0-Y1(NB2)-Y2(N2)
           C0        =C0+DPLUS(NB2)
       IF (C0.GE.D)                      GOTO 320
@@ -632,7 +631,7 @@ C
       INTEGER    TOP,NMATCH(N)
       INTEGER  NBL(N*(N-1))
       DOUBLE PRECISION Y1(N),Y2(N),DMINUS(N),DPLUS(N),D,DBEST,Y1B,Y2B,
-     F                 YB,DFLOAT
+     F                 YB
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
 C *** SHRINKING	A BLOSSOM
 C
@@ -750,7 +749,7 @@ C
 C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
       INTEGER    CE(N*(N-1)),CQ,INDEX(N+1),NMATCH(N),TOP
       INTEGER  NB(N*(N-1))
-      DOUBLE PRECISION     D,DD,Y1(N),DFLOAT
+      DOUBLE PRECISION     D,DD,Y1(N)
       DO  10  I=1,N
           NMATCH(I)=TOP
    10 CONTINUE
@@ -760,7 +759,7 @@ C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
       DO 100  J=1,N1
          IF(CQ.GT.CE(J))               CQ=CE(J)
   100 CONTINUE
-      D=DFLOAT(CQ)/2.
+      D=DBLE(CQ)/2.
       DO 110  I=1,N
           Y1(I)=D
   110 CONTINUE
@@ -771,10 +770,10 @@ C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
             N2=INDEX(I)
             N3=INDEX(I+1)-1
             JJNB=NB(N2)
-            D=DFLOAT(CE(N2))-Y1(JJNB)
+            D=DBLE(CE(N2))-Y1(JJNB)
             DO 130  IK=N2,N3
                J=NB(IK)
-               DD=DFLOAT(CE(IK))-Y1(J)
+               DD=DBLE(CE(IK))-Y1(J)
                IF(DD.GE.D)             GOTO 120
                   N1=J
                   D=DD
@@ -790,10 +789,5 @@ C - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - - -	- - -
                   NCARD=NCARD+1
   140    Y1(I)=D
   150 CONTINUE
-      RETURN
-      END
-      DOUBLE PRECISION FUNCTION DFLOAT(IARG)
-C FUNCTION TO CONVERT INTEGER ARGUMENT IARG INTO DOUBLE	PRECISION
-      DFLOAT=IARG
       RETURN
       END

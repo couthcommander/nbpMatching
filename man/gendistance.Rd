@@ -55,7 +55,7 @@ allowed to match phantom values.  The default value is 0.}
 
 \item{singular.method}{A character string, indicating the function to use
 when encountering a singular matrix.  By default, \code{\link{solve}} is called.
-The alternative is to call \code{\link{ginv}} from the \pkg{MASS} package.}
+The alternative is to call \code{\link[MASS]{ginv}} from the \pkg{MASS} package.}
 
 \item{talisman}{An integer or column name, providing location of talisman column.
 The talisman column should only contains values of 0 and 1.  Records with zero

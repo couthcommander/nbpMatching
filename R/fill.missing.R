@@ -1,10 +1,10 @@
 #'Data Imputation
 #'
-#'The fill.missing function uses the \code{\link{transcan}} function from the
+#'The fill.missing function uses the \code{\link[Hmisc]{transcan}} function from the
 #'\pkg{Hmisc} package to impute values for the given data.frame.
 #'
 #'The fill.missing function will fill the missing values within a data.frame
-#'with the values imputed with the \code{\link{transcan}} function.  An idcol may be
+#'with the values imputed with the \code{\link[Hmisc]{transcan}} function.  An idcol may be
 #'specified to prevent including the use of IDs in the imputation.  In addition
 #'for every column that contains missing data, a new column will be attached to
 #'the data.frame containing an indicator of missingness.  A "1" indicates that
@@ -18,11 +18,11 @@
 #'@param idcol An integer value or character string.  Indicates the column
 #'containing IDs, specified as column index or column name.  Defaults to "id",
 #'or NA, when not found.
-#'@param \dots Additional arguments, potentially passed to \code{\link{transcan}}.
+#'@param \dots Additional arguments, potentially passed to \code{\link[Hmisc]{transcan}}.
 #'@return data.frame with imputed values
 #'@exportMethod fill.missing
 #'@author Cole Beck
-#'@seealso \code{\link{transcan}}
+#'@seealso \code{\link[Hmisc]{transcan}}
 #'@examples
 #'
 #'set.seed(1)
@@ -67,7 +67,7 @@ setMethod("fill.missing", "data.frame", function(x, seed=101, simplify=TRUE, idc
     # run until no errors
     fails <- 0
     while(fails < 10) {
-        if(!is.null(tryCatch(imputer <- transcan(fmla, data=x, transformed=FALSE, pl=FALSE, pr=FALSE, imputed=TRUE, ...),  error = function(e){}))) break
+        if(!is.null(tryCatch(imputer <- Hmisc::transcan(fmla, data=x, transformed=FALSE, pl=FALSE, pr=FALSE, imputed=TRUE, ...),  error = function(e){}))) break
         fails <- fails+1
     }
     if(fails >= 10) stop("cannot impute values")

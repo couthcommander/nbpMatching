@@ -8,8 +8,8 @@
 #'(when generating a distance matrix).  Weighting a variable more will lower
 #'the average distance, but it could penalize the distance of the other
 #'variables. Calculating the standard error requires calling
-#'\code{\link{hdquantile}} from \pkg{Hmisc}.  The quantiles may be slighly
-#'different when using \code{\link{hdquantile}}.
+#'\code{\link[Hmisc]{hdquantile}} from \pkg{Hmisc}.  The quantiles may be slightly
+#'different when using \code{\link[Hmisc]{hdquantile}}.
 #'
 #'@aliases qom qom,data.frame,data.frame-method qom,data.frame,nonbimatch-method
 #'@param covariate A data.frame object.
@@ -138,7 +138,10 @@ setMethod("qom", signature(covariate="data.frame", matches="data.frame"), functi
             pairdiff.sums.mat <- abs(group.one - group.two)
         }
         if(use.se == TRUE) {
-            se.parts <- t(apply(pairdiff.sums.mat, MARGIN=2, FUN=function(x) { tmp<-hdquantile(x, probs=probs, se=TRUE); c(tmp, attr(tmp, "se")) }))
+            se.parts <- t(apply(pairdiff.sums.mat, MARGIN=2, FUN=function(x) {
+              tmp <- Hmisc::hdquantile(x, probs=probs, se=TRUE)
+              c(tmp, attr(tmp, "se"))
+            }))
             pairsumm <- se.parts[,seq_along(probs)]
             pair.se <- round(se.parts[,seq(length(probs)+1, length.out=length(probs))], digits)
             # change the format of the colnames to be like "quantile"

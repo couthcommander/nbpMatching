@@ -1,8 +1,8 @@
 Package: nbpMatching
 Type: Package
 Title: Functions for Optimal Non-Bipartite Matching
-Version: 1.5.5
-Date: 2024-05-13
+Version: 1.5.6
+Date: 2024-09-23
 Author: Cole Beck [aut, cre], Bo Lu [aut], Robert Greevy [aut]
 Maintainer: Cole Beck <cole.beck@vumc.org>
 Authors@R: c(person("Cole", "Beck", role = c("aut", "cre"),
@@ -32,7 +32,7 @@ Imports:
     Hmisc,
     MASS,
     utils
-URL: https://biostat.app.vumc.org/wiki/Main/MatchedRandomization
+URL: https://github.com/couthcommander/nbpMatching
 Collate:
     'distancematrix.R'
     'nonbimatch.R'

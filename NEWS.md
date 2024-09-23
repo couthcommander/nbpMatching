@@ -1,3 +1,6 @@
+# nbpmatching 1.5.6
+* fix Fortran legacy - replace DFLOAT with DBLE
+
 # nbpmatching 1.5.5
 * fix Fortran warning from legacy code
 

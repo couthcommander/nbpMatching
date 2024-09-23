@@ -41,7 +41,7 @@
 #'allowed to match phantom values.  The default value is 0.
 #'@param singular.method A character string, indicating the function to use
 #'when encountering a singular matrix.  By default, \code{\link{solve}} is called.
-#'The alternative is to call \code{\link{ginv}} from the \pkg{MASS} package.
+#'The alternative is to call \code{\link[MASS]{ginv}} from the \pkg{MASS} package.
 #'@param talisman An integer or column name, providing location of talisman column.
 #'The talisman column should only contains values of 0 and 1.  Records with zero
 #'will match phantoms perfectly, while other records will match phantoms at max distance.
@@ -262,7 +262,7 @@ setMethod("gendistance", "data.frame", function(covariate, idcol=NULL,
         # options for singular.method: [solve, ginv]
         if(is.null(singular.method) || !is.character(singular.method)) singular.method <- 'solve'
         if(singular.method=='ginv') {
-            Sinv <- tryCatch(ginv(X.cov$cov), error=function(e) { warning(e[[1]]); NULL})
+            Sinv <- tryCatch(MASS::ginv(X.cov$cov), error=function(e) { warning(e[[1]]); NULL})
             if(!is.null(Sinv)) {
                 warning("The covariance matrix is not invertible. The Moore-Penrose pseudoinverse (generalized inverse) was used to compute distances.")
             }
