@@ -5,7 +5,7 @@
 #'running nonbimatch.
 #'
 #'The most current documentation is available at
-#'\url{https://biostat.app.vumc.org/wiki/Main/MatchedRandomization}.
+#'\url{https://github.com/couthcommander/nbpMatching}.
 #'
 #'
 #'@name nbpMatching-package
